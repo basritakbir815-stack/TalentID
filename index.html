@@ -43,22 +43,20 @@
             font-size: 1.1em;
         }
 
-        .contact-info {
+        .cs-info {
             margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
         }
 
-        .contact-info p {
+        .cs-info p {
+            color: #555;
             margin: 5px 0;
-            color: #333;
+            font-size: 0.95em;
         }
 
-        .contact-info a {
+        .cs-info strong {
             color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
         }
 
         .tabs {
@@ -176,7 +174,6 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            overflow-y: auto;
         }
 
         .modal.active {
@@ -190,7 +187,6 @@
             max-width: 500px;
             width: 90%;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            margin: 20px;
         }
 
         .modal-header {
@@ -211,8 +207,7 @@
             font-weight: bold;
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group input {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
@@ -221,6 +216,11 @@
         }
 
         .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
             background: white;
             cursor: pointer;
         }
@@ -229,55 +229,6 @@
         .form-group select:focus {
             outline: none;
             border-color: #667eea;
-        }
-
-        .form-group input.error,
-        .form-group select.error {
-            border-color: #ff6b6b;
-        }
-
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.9em;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error-message.active {
-            display: block;
-        }
-
-        .payment-info {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: none;
-        }
-
-        .payment-info.active {
-            display: block;
-        }
-
-        .payment-info h4 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .payment-info p {
-            margin: 5px 0;
-            color: #333;
-        }
-
-        .payment-info .account-number {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
-            color: #667eea;
-            margin: 10px 0;
-            text-align: center;
         }
 
         .modal-buttons {
@@ -302,11 +253,6 @@
             color: white;
         }
 
-        .whatsapp-button {
-            background: #25D366;
-            color: white;
-        }
-
         .cancel-button {
             background: #f0f0f0;
             color: #666;
@@ -316,23 +262,102 @@
             transform: scale(1.05);
         }
 
-        .modal-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
         }
 
-        .info-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+        .success-message.active {
+            display: block;
+        }
+
+        .payment-info-box {
+            background: #f8f9fa;
             padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
         }
 
-        .info-box p {
+        .payment-info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .payment-account {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 2px dashed #667eea;
+        }
+
+        .account-number {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            letter-spacing: 1px;
             margin: 5px 0;
-            color: #856404;
+        }
+
+        .account-name {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .whatsapp-button-container {
+            margin: 20px 0;
+        }
+
+        .whatsapp-button {
+            width: 100%;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            background: #20ba56;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .error-message {
+            background: #ff6b6b;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+            font-size: 0.9em;
+        }
+
+        .error-message.active {
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -343,11 +368,6 @@
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
-
-            .modal-content {
-                margin: 10px;
-                padding: 20px;
-            }
         }
     </style>
 </head>
@@ -356,10 +376,9 @@
         <header>
             <h1>💎 TalentID</h1>
             <p class="subtitle">Top Up Diamond Game Terpercaya & Termurah</p>
-            <div class="contact-info">
-                <p>📱 Customer Service: <a href="https://wa.me/6281234567890" target="_blank">0812-3456-7890</a></p>
-                <p>⏰ Proses: Otomatis 1-5 Menit</p>
-                <p>✅ Garansi: 100% Uang Kembali</p>
+            <div class="cs-info">
+                <p>📞 Customer Service: <strong>0812-3456-7890</strong></p>
+                <p>⚡ Proses Cepat 1-5 Menit | ✅ Garansi 100% Aman</p>
             </div>
         </header>
 
@@ -508,73 +527,63 @@
     <div class="modal" id="purchaseModal">
         <div class="modal-content">
             <div class="modal-header">📝 Form Pembelian</div>
-            
             <div class="form-group">
                 <label>Produk:</label>
                 <input type="text" id="productName" readonly>
             </div>
-            
             <div class="form-group">
                 <label>Harga:</label>
                 <input type="text" id="productPrice" readonly>
             </div>
-            
             <div class="form-group">
                 <label>User ID / Server ID: <span style="color: red;">*</span></label>
                 <input type="text" id="userId" placeholder="Masukkan User ID">
-                <div class="error-message" id="userIdError">User ID wajib diisi!</div>
+                <small style="color: #666; font-size: 0.85em;">Pastikan User ID benar, kami tidak bertanggung jawab atas kesalahan input</small>
             </div>
-            
             <div class="form-group">
                 <label>Nomor WhatsApp: <span style="color: red;">*</span></label>
                 <input type="text" id="whatsapp" placeholder="Contoh: 081234567890">
-                <div class="error-message" id="whatsappError">Nomor WhatsApp wajib diisi dengan format yang benar!</div>
+                <small style="color: #666; font-size: 0.85em;">Format: 08xxxxxxxxxx (10-15 digit)</small>
             </div>
-            
             <div class="form-group">
                 <label>Metode Pembayaran: <span style="color: red;">*</span></label>
                 <select id="paymentMethod">
                     <option value="">Pilih Metode Pembayaran</option>
-                    <option value="dana">💳 DANA - 0812-3456-7890</option>
-                    <option value="gopay">🟢 GoPay - 0812-3456-7890</option>
-                    <option value="ovo">🟣 OVO - 0812-3456-7890</option>
-                    <option value="bca">🏦 BCA - 1234567890</option>
-                    <option value="mandiri">🏦 Mandiri - 9876543210</option>
+                    <option value="dana">💳 DANA</option>
+                    <option value="gopay">🟢 GoPay</option>
+                    <option value="ovo">🟣 OVO</option>
                 </select>
-                <div class="error-message" id="paymentError">Pilih metode pembayaran!</div>
             </div>
-
-            <div class="payment-info" id="paymentInfo">
-                <h4>📋 Informasi Pembayaran</h4>
-                <p id="paymentMethodName"></p>
-                <div class="account-number" id="accountNumber"></div>
-                <p id="accountName"></p>
-            </div>
-
-            <div class="info-box">
-                <p><strong>⚠️ Cara Pembelian:</strong></p>
-                <p>1. Isi semua data dengan benar</p>
-                <p>2. Pilih metode pembayaran</p>
-                <p>3. Klik "Pesan via WhatsApp"</p>
-                <p>4. Lakukan pembayaran sesuai nominal</p>
-                <p>5. Kirim bukti transfer ke CS kami</p>
-                <p>6. Diamond akan diproses 1-5 menit</p>
-            </div>
-
             <div class="modal-buttons">
                 <button class="modal-button cancel-button" id="cancelBtn">Batal</button>
-                <button class="modal-button whatsapp-button" id="whatsappBtn">
-                    📱 Pesan via WhatsApp
-                </button>
+                <button class="modal-button confirm-button" id="confirmBtn">Lanjutkan</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Konfigurasi
-        const CONFIG = {
-            whatsappNumber: '6281234567890', // Ganti dengan nomor WhatsApp bisnis Anda
-            paymentAccounts: {
-                dana: { number: '0812-3456-7890', name: 'a.n. TalentID Store' },
-                gopay: { number: '0812-3456-7890', name: 'a.n. TalentID Store' },
-                ovo: {
+    <div class="modal" id="paymentModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">💰 Instruksi Pembayaran</div>
+            
+            <div class="payment-info-box">
+                <h3>📋 Detail Pesanan</h3>
+                <div class="info-row">
+                    <span>Produk:</span>
+                    <strong id="orderProduct"></strong>
+                </div>
+                <div class="info-row">
+                    <span>Total Bayar:</span>
+                    <strong id="orderPrice" style="color: #ff6b6b; font-size: 1.2em;"></strong>
+                </div>
+                <div class="info-row">
+                    <span>User ID:</span>
+                    <strong id="orderUserId"></strong>
+                </div>
+            </div>
+
+            <div class="payment-info-box" id="paymentAccountInfo">
+                <h3 id="paymentMethodTitle">💳 Informasi Pembayaran</h3>
+                <div id="paymentDetails"></div>
+            </div>
+
+            <div class="payment-info-box">
